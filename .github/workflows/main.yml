@@ -15,9 +15,9 @@ jobs:
           fetch-depth: 0
       - name: Add remote 
         env:
-          HG: ${{ secrets.HG }}
-        run: git remote add space https://huggingface.co/spaces/Azhar-Sharif/text_summarizer_model
+          HG: ${{ secrets.HG }} 
+        run: git remote add space https://Azhar-Sharif:$HG@huggingface.co/spaces//text_summarizer_model
       - name: Push to hub
         env:
           HG: ${{ secrets.HG }}
-        run: git push --force https://huggingface.co/spaces/Azhar-Sharif/text_summarizer_model
+        run: git push --force https://Azhar-Sharif:$HG@huggingface.co/spaces//text_summarizer_model
