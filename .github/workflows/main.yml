@@ -20,4 +20,4 @@ jobs:
       - name: Push to hub
         env:
           HG: ${{ secrets.HG }}
-        run: git push --force https://Azhar-Sharif:$HG@huggingface.co/spaces//text_summarizer_model
+        run: git push --force https://Azhar-Sharif:$HG@huggingface.co/spaces//text_summarizer_model main
