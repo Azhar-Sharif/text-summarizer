@@ -21,3 +21,33 @@ jobs:
         env:
           HG: ${{ secrets.HG }}
         run: git push --force https://Azhar-Sharif:$HG@huggingface.co/spaces//text_summarizer_model main
+
+name: Sync to Hugging Face Hub
+
+on:
+  push:
+    branches: [main]
+
+  # To allow manual triggering of this workflow
+  workflow_dispatch:
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Add Remote
+        env:
+          HF_TOKEN: ${{ secrets.HG }}
+        run: |
+          git remote add space https://Azhar-Sharif:$HF_TOKEN@huggingface.co/spaces/Azhar-Sharif/text_summarizer_model
+
+      - name: Push to Hugging Face Hub
+        env:
+          HF_TOKEN: ${{ secrets.HG }}
+        run: |
+          git push --force space main
